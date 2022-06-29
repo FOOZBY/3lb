@@ -3,8 +3,7 @@ using namespace sf;
 RenderWindow* window;
 Mutex mutex;
 
-CircleShape* triangle;
-//RectangleShape* rectangle;
+ConvexShape* triangle;
 CircleShape* circle;
 
 void render()
@@ -63,14 +62,18 @@ int main()
     window = new RenderWindow(VideoMode(1080, 720), "Lab3");
     window->setFramerateLimit(60);
 
-    triangle = new CircleShape(75, 3);
+    triangle = new ConvexShape;
+    triangle->setPointCount(3);
+    triangle->setPoint(0, sf::Vector2f(0, 0));
+    triangle->setPoint(1, sf::Vector2f(0, 100));
+    triangle->setPoint(2, sf::Vector2f(150, 50));
     triangle->setPosition(100, 100);
-    triangle->setFillColor(Color::Black);
+    triangle->setFillColor(Color::Green);
 
     circle = new CircleShape();
     circle->setRadius(75);
     circle->setPosition(window->getSize().x*0.6, 300);
-    circle->setFillColor(Color::Black);
+    circle->setFillColor(Color::Blue);
 
     window->clear(Color::White);
     window->draw(*circle);
